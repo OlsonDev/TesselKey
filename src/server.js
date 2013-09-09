@@ -1,8 +1,8 @@
-var os      = require('os')
+var temp    = require('temp')
 	, path    = require('path')
 	, express = require('express')
 	, less    = require('less-middleware')
-	, tmp     = path.join(os.tmpDir(), 'TesselKey')
+	, tmp     = path.join(temp.dir, 'TesselKey')
 	, root    = __dirname
 	, pub     = path.join(root, 'public')
 	, images  = path.join(pub, 'images')
@@ -12,12 +12,12 @@ var os      = require('os')
 	, trimmer = require('./modules/trimmer.js')
 ;
 
-app.disable('x-powered-by');
+app.disable('X-Powered-By');
 
 app.configure(function() {
 	app.use(express.compress());
 	app.use(trimmer());
-	app.use(express.favicon());
+	app.use(express.favicon(path.join(images, 'favicon.ico')));
 	app.use('/images',  express.static(images));
 	app.use('/scripts', express.static(scripts));
 	app.use(less({ src: pub, dest: tmp }));
