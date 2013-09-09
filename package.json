@@ -1,0 +1,21 @@
+{
+  "author": "Josh Olson (http://josholson.name)",
+  "name": "TesselKey",
+  "description": "Keyboard software for the Tessel microcontroller.",
+  "version": "0.0.1",
+  "homepage": "http://www.tesselkey.com/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/OlsonDev/TesselKey.git"
+  },
+  "dependencies": {
+    "express": "~3.3.8",
+    "less-middleware": "~0.1.12",
+    "lodash": "~1.3.1"
+  },
+  "devDependencies": {
+    "jshint": "2.1.10"
+  },
+  "optionalDependencies": {},
+  "engines": { "node": "*" }
+}
