@@ -5,6 +5,7 @@
 	var vm = {
 			board: {
 				name: 'Tessel'
+				, chips: buildChips()
 				, switches: buildSwitches()
 				, leds: buildLEDs()
 				, pins: []
@@ -12,30 +13,37 @@
 			}
 		}
 		, mapping = {
-			switches: { create: function(o) { return new Switch(o.data, o.parent); } }
-			, leds: { create: function(o) { return new LED(o.data, o.parent); } }
-			, pins: { create: function(o) { return new Pin(o.data, o.parent); } }
+			  chips:     { create: function(o) { return new Chip    (o.data, o.parent); } }
+			, switches:  { create: function(o) { return new Switch  (o.data, o.parent); } }
+			, leds:      { create: function(o) { return new LED     (o.data, o.parent); } }
+			, pins:      { create: function(o) { return new Pin     (o.data, o.parent); } }
 			, pinGroups: { create: function(o) { return new PinGroup(o.data, o.parent); } }
-			, board: { create: function(o) { return new Board(o.data, o.parent); } }
+			, board:     { create: function(o) { return new Board   (o.data, o.parent); } }
 		}
 	;
 
+	function buildChips() {
+		return _.map('µC|Flash|RAM|Wi-Fi'.split('|'), function(name, i) {
+			return { name: name, description: name };
+		});
+	}
+
 	function buildSwitches() {
-		return _.map('Reset|Smart Config'.split('|'), function(desc, i) {
+		return _.map('Reset button|SimpleLink Wi-Fi SmartConfig button'.split('|'), function(desc, i) {
 			var name = 'S' + (i + 1);
 			return { name: name, description: desc || name };
 		});
 	}
 
 	function buildLEDs() {
-		return _.map('|Conn|Error|LED 1|LED 2'.split('|'), function(desc, i) {
+		return _.map('Power LED|Wi-Fi Connection LED|Wi-Fi Error LED|Debug LED 1|Debug LED 2'.split('|'), function(desc, i) {
 			var name = 'D' + (i + 1);
 			return { name: name, description: desc || name };
 		});
 	}
 
 	function buildPinGroups() {
-		var groups = _.map('ABCDE', function(name) {
+		var groups = _.map('A|B|C|D|GPIO Bank'.split('|'), function(name) {
 				return { name: name, description: name, pins: buildDefaultPins() };
 			})
 			, e = groups[groups.length - 1]
@@ -70,6 +78,11 @@
 		self.hovered = ko.observable(false);
 	}
 
+	function Chip() {
+		var self = this;
+		init.apply(self, arguments);
+	}
+
 	function Switch() {
 		var self = this;
 		init.apply(self, arguments);
@@ -99,7 +112,7 @@
 			, h = 2360
 		;
 		init.apply(self, arguments);
-		self.scale = ko.observable(0.4);
+		self.scale = ko.observable(0.24);
 		self.rotation = ko.observable(0);
 		self.width  = ko.computed(function() { return self.scale() * w + 'px'; });
 		self.height = ko.computed(function() { return self.scale() * h + 'px'; });

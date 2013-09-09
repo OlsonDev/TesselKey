@@ -2,11 +2,13 @@
 @import "mixins";
 body {
 	padding: 10px;
+	.segoe-ui-semilight();
 }
 #form-and-info {
 	.inline-block-top;
 	margin-right: 40px;
 	h1 {
+		.segoe-ui();
 		color: @tessel;
 		.inline-block-middle;
 		margin: 0 0 10px;
@@ -68,6 +70,47 @@ form {
 		position: absolute;
 		list-style-type: none;
 	}
+	> .chips {
+		@scale: 1.08;
+		> li {
+			background: fade(@chip, @inactive);
+			&.hovered {
+				background: fade(@chip, @hover);
+				&:not(:hover) {
+					background: fade(@chip, @active);
+					transform: scale(@scale);
+					&.chip-uc {
+						transform: rotate(45deg) scale(@scale);
+					}
+				}
+			}
+		}
+		.chip-uc {
+			width: 21.8%;
+			height: 18.5%;
+			bottom: 24.4%;
+			left: 39.2%;
+			transform: rotate(45deg);
+		}
+		.chip-flash {
+			width: 11.1%;
+			height: 12.0%;
+			top: 40.7%;
+			left: 29.4%;
+		}
+		.chip-ram {
+			width: 23.5%;
+			height: 12.2%;
+			top: 40.5%;
+			right: 32.3%;
+		}
+		.chip-wi-fi {
+			width: 24.3%;
+			height: 24.4%;
+			top: 8.4%;
+			right: 26.2%;
+		}
+	}
 	> .switches {
 		> li {
 			background: fade(@switch, @inactive);
@@ -90,6 +133,13 @@ form {
 			height: 4.7%;
 			bottom: 12.4%;
 			right: 28.2%;
+			background: fade(@smartConfig, @inactive);
+			&.hovered {
+				background: fade(@smartConfig, @hover);
+				&:not(:hover) {
+					background: fade(@smartConfig, @active);
+				}
+			}
 		}
 	}
 	> .leds {
@@ -144,18 +194,32 @@ form {
 			}
 			li {
 				background: fade(@pin, @inactive);
-				&.pin-gnd { background: fade(@gnd, @inactive); }
-				&.pin-3v3 { background: fade(@3v3, @inactive); }
-				&.pin-clk { background: fade(@clk, @inactive); }
-				&.pin-5v { background: fade(@5v, @inactive); }
-				&.pin-g1, &.pin-g2, &.pin-g3, &.pin-g4, &.pin-g5, &.pin-g6, { background: fade(@gpio, @inactive); }
+				&.pin-gnd  { background: fade(@gnd, @inactive); }
+				&.pin-3v3  { background: fade(@3v3, @inactive); }
+				&.pin-clk  { background: fade(@clk, @inactive); }
+				&.pin-5v   { background: fade(@5v, @inactive); }
+				&.pin-miso { background: fade(@miso, @inactive); }
+				&.pin-mosi { background: fade(@mosi, @inactive); }
+				&.pin-scl  { background: fade(@scl, @inactive); }
+				&.pin-sda  { background: fade(@sda, @inactive); }
+				&.pin-g1, &.pin-g2, &.pin-g3,
+				&.pin-g4, &.pin-g5, &.pin-g6 {
+					background: fade(@gpio, @inactive);
+				}
 				&.hovered {
 					background: fade(@pin, @active);
-					&.pin-gnd { background: fade(@gnd, @active); }
-					&.pin-3v3 { background: fade(@3v3, @active); }
-					&.pin-clk { background: fade(@clk, @active); }
-					&.pin-5v { background: fade(@5v, @active); }
-					&.pin-g1, &.pin-g2, &.pin-g3, &.pin-g4, &.pin-g5, &.pin-g6, { background: fade(@gpio, @active); }
+					&.pin-gnd  { background: fade(@gnd, @active); }
+					&.pin-3v3  { background: fade(@3v3, @active); }
+					&.pin-clk  { background: fade(@clk, @active); }
+					&.pin-5v   { background: fade(@5v, @active); }
+					&.pin-miso { background: fade(@miso, @active); }
+					&.pin-mosi { background: fade(@mosi, @active); }
+					&.pin-scl  { background: fade(@scl, @active); }
+					&.pin-sda  { background: fade(@sda, @active); }
+					&.pin-g1, &.pin-g2, &.pin-g3,
+					&.pin-g4, &.pin-g5, &.pin-g6 {
+						background: fade(@gpio, @active);
+					}
 				}
 			}
 		}
@@ -212,7 +276,7 @@ form {
 				}
 			}
 		}
-		.pin-group-e {
+		.pin-group-gpio-bank {
 			bottom: 0%;
 			left: 26.5%;
 			width: 47%;
@@ -255,11 +319,12 @@ form {
 		list-style-type: none;
 		padding: 0;
 		margin: 0 0 10px;
+		.segoe-ui-mono();
 	}
 	.hovered {
 		background: #ddd;
 	}
-	.switches, .leds {
+	.chips, .switches, .leds {
 		> li {
 			.inline-block-top;
 			background: #eee;
@@ -292,10 +357,25 @@ form {
 					color: @tessel;
 				}
 			}
+			&.pin-group-gpio-bank {
+				width: 130px;
+				> .pins {
+					column-count: 2;
+					column-gap: 0;
+					li {
+						padding-right: 15px;
+						&:nth-child(1n+10) {
+							padding-left: 15px;
+							padding-right: 10px;
+						}
+					}
+				}
+			}
 			> span {
 				font-weight: bold;
 			}
 			ul {
+				margin-top: 5px;
 				text-align: left;
 				li {
 					padding: 5px 10px;

@@ -24,8 +24,8 @@
 }());
 (function() {
 	'use strict';
-	var from = 'ąàáäâãåæăćęèéëêìíïîłńòóöôõøśșțùúüûñçżź'
-		, to   = 'aaaaaaaaaceeeeeiiiilnoooooosstuuuunczz'
+	var from = 'ąàáäâãåæăćęèéëêìíïîłńòóöôõøśșțùúüûµñçżź'
+		, to   = 'aaaaaaaaaceeeeeiiiilnoooooosstuuuuunczz'
 		, accented = new RegExp('[' + from + ']', 'g')
 		, slug = /[A-Z]+(?![a-z])|[A-Z](?=[a-z])|\d+/g
 		, unaccent = function(str) {

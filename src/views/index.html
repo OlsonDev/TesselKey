@@ -54,6 +54,7 @@
 		</script>
 
 		<script type="text/html" id="board-tmpl">
+			<ul class="chips" data-bind="template: { name: 'list-item-tmpl', foreach: chips }"></ul>
 			<ul class="switches" data-bind="template: { name: 'list-item-tmpl', foreach: switches }"></ul>
 			<ul class="leds" data-bind="template: { name: 'list-item-tmpl', foreach: leds }"></ul>
 
