@@ -8,7 +8,6 @@
 				, chips: buildChips()
 				, switches: buildSwitches()
 				, leds: buildLEDs()
-				, pins: []
 				, pinGroups: buildPinGroups()
 			}
 		}
@@ -71,10 +70,15 @@
 		self.ctor = ko.computed(function() {
 			return _.objectTypeName(self);
 		});
-		self.cssClass = ko.computed(function() {
-			var name = _.isFunction(self.name) ? '-' + _.classify(self.name()) : '';
-			return _.classify(self.ctor()) + name;
+		self.typeCode = ko.computed(function() {
+			return _.slugify(self.ctor());
 		});
+		self.code = ko.computed(function() {
+			var name = _.isFunction(self.name) ? '-' + _.slugify(self.name()) : '';
+			return self.typeCode() + name;
+		});
+		self.tooltipTmpl = ko.computed(function() { return '#' + self.code() + '-tmpl, #' + self.typeCode() + '-tmpl'; });
+		self.tooltipTmplClass = ko.computed(function() { return self.code() + '-tooltip ' + self.typeCode() + '-tooltip'; });
 		self.hovered = ko.observable(false);
 	}
 

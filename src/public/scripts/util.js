@@ -40,7 +40,7 @@
 			;
 		}
 	;
-	_.classify = function(str) {
+	_.slugify = function(str) {
 		if (!str) return str;
 		if (str.length > 3) {
 			str = str.replace(slug, function($1, i, s) {

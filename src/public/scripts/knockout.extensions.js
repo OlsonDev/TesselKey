@@ -24,7 +24,7 @@
 				, hasProp
 				, matched
 			;
-			matchValue = ko.utils.unwrapObservable(matchValue);
+			matchValue = ko.unwrap(matchValue);
 			if (!options.maintainSort) {
 				matches = [];
 			}
@@ -39,7 +39,7 @@
 						matches.push(current);
 					}
 				}
-				currentValue = ko.utils.unwrapObservable(current[propName]);
+				currentValue = ko.unwrap(current[propName]);
 				matched = options.equal
 					? options.identity
 						? currentValue === matchValue
@@ -70,31 +70,43 @@
 	};
 
 	ko.computed.fn.firstByProperty = ko.observableArray.fn.firstByProperty = function() {
-		var filtered = ko.utils.unwrapObservable(this.filterByProperty.apply(this, arguments));
+		var filtered = ko.unwrap(this.filterByProperty.apply(this, arguments));
 		if (!filtered.length) return null;
 		return filtered[0];
+	};
+
+	var makeTemplateSource = ko.templateEngine.prototype.makeTemplateSource;
+	ko.templateEngine.prototype.makeTemplateSource = function(templateSource, templateDocument) {
+		if (!_.isString(templateSource)) return makeTemplateSource.apply(this, arguments);
+		return makeTemplateSource.call(
+			this
+			, $(templateSource.replace(/^#?/, '#'), templateDocument).prop('id') || templateSource
+			, templateDocument
+		);
 	};
 
 	// data-bind="tooltip: 'someID'"
 	// data-bind="tooltip: { track: false, template: 'someID' }"
 	ko.bindingHandlers.tooltip = {
-		update: function(elem, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
+		init: function(elem, valueAccessor, allBindingsAccessor, viewModel, bindingContext) {
 			var defaults = {
 				track: true
-				, delay: 0
+				, show: 0
+				, hide: 0
 			};
 			var options = valueAccessor();
 			var template = null;
 			var isPO = $.isPlainObject(options);
-			template = isPO ? options.template : options;
+			template = ko.unwrap(isPO ? options.template : options);
 			options = isPO ? $.extend(defaults, options) : defaults;
 			delete options.template;
-			options.bodyHandler = function() {
+			options.items = elem;
+			options.content = function() {
 				var ctnr = document.createElement('div');
 				var useBindingContext = !$.isPlainObject(options.templateData) || $.isEmptyObject(options.templateData);
 				ko.renderTemplate(template, useBindingContext ? bindingContext : options.templateData, { templateEngine: ko.nativeTemplateEngine.instance }, ctnr);
-				return ctnr;
-			}
+				return $(ctnr).children();
+			};
 			$(elem).tooltip(options);
 		}
 	};
@@ -107,7 +119,7 @@
 
 	ko.bindingHandlers.hidden = {
 		update: function(element, valueAccessor) {
-			ko.bindingHandlers.visible.update(element, function() { return !ko.utils.unwrapObservable(valueAccessor()); });
+			ko.bindingHandlers.visible.update(element, function() { return !ko.unwrap(valueAccessor()); });
 		}
 	};
 
@@ -157,13 +169,13 @@
 	};
 
 	ko.bindingHandlers['class'] = {
-      'update': function(element, valueAccessor) {
-          if (element['__ko__previousClassValue__']) {
-              $(element).removeClass(element['__ko__previousClassValue__']);
-          }
-          var value = ko.utils.unwrapObservable(valueAccessor());
-          $(element).addClass(value);
-          element['__ko__previousClassValue__'] = value;
-      }
+	  'update': function(element, valueAccessor) {
+		  if (element['__ko__previousClassValue__']) {
+			  $(element).removeClass(element['__ko__previousClassValue__']);
+		  }
+		  var value = ko.unwrap(valueAccessor());
+		  $(element).addClass(value);
+		  element['__ko__previousClassValue__'] = value;
+	  }
   };
 }());
