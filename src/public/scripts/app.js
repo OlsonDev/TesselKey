@@ -166,9 +166,9 @@
 	}
 
 	window.vm = vm = new ViewModel(vm);
-
+	ko.applyBindings(vm);
+	vm.ready(true);
 	$(function() {
-		ko.applyBindings(vm);
-		vm.ready(true);
+
 	});
 }());
