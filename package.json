@@ -4,6 +4,7 @@
   "description": "Keyboard software for the Tessel microcontroller.",
   "version": "0.0.1",
   "homepage": "http://www.tesselkey.com/",
+  "main": "src/server.js",
   "repository": {
     "type": "git",
     "url": "git://github.com/OlsonDev/TesselKey.git"
