@@ -22,7 +22,7 @@
 	;
 
 	function buildChips() {
-		return _.map('µC|Flash|RAM|Wi-Fi'.split('|'), function(name, i) {
+		return _.map('Microcontroller|Flash|RAM|Wi-Fi'.split('|'), function(name, i) {
 			return { name: name, description: name };
 		});
 	}
@@ -42,26 +42,47 @@
 	}
 
 	function buildPinGroups() {
-		var groups = _.map('A|B|C|D|GPIO Bank'.split('|'), function(name) {
-				return { name: name, description: name, pins: buildDefaultPins() };
+		var groups = _.map('GPIO Bank|A|B|C|D'.split('|'), function(name, i) {
+				var inches = i ? '0.1' : '0.2'
+					, mm = i ? '2.54' : '5.08'
+					, pinNumFactor = !i * 2
+					, pinNumOffset = !i * -1
+				;
+				return {
+					name: name
+					, description: name.length === 1 ? 'Module ' + name : name
+					, numPins: name.length === 1 ? '10 pins (1x10)' : '20 pins (2x10)'
+					, pins: buildDefaultPins(inches, mm, pinNumFactor, pinNumOffset)
+				};
 			})
-			, e = groups[groups.length - 1]
-			, ep = e.pins
+			, gpio = groups[0]
 		;
-		ep.push.apply(ep, buildGPIOPins());
+		gpio.pins = buildGPIOPins().concat(gpio.pins);
 		return groups;
 	}
 
-	function buildDefaultPins() {
-		return _.map('GND|3V3|SCL|SDA|CLK|MISO|MOSI|G1|G2|G3'.split('|'), function(name, i) {
-			return { name: name, description: name };
+	function buildPins(names, inches, mm, pinNumFactor, pinNumOffset) {
+		pinNumFactor = pinNumFactor || 1;
+		pinNumOffset = pinNumOffset || 0;
+		return _.map(names.split('|'), function(name, i) {
+			return {
+				name: name
+				, description: name
+					.replace(/^A(\d)$/, 'ADC$1')
+					.replace(/^G(\d)$/, 'GPIO$1')
+				, inchesToEdge: inches || '0.1'
+				, mmToEdge: mm || '2.54'
+				, pinNum: (i + 1) * pinNumFactor + pinNumOffset
+			};
 		});
 	}
 
-	function buildGPIOPins() {
-		return _.map('G6|G5|G4|A5|A4|A3|A2|A1|A0|5V'.split('|'), function(name, i) {
-			return { name: name, description: name };
-		});
+	function buildDefaultPins(inches, mm, pinNumFactor, pinNumOffset) {
+		return buildPins('GND|3V3|SCL|SDA|CLK|MISO|MOSI|G1|G2|G3', inches, mm, pinNumFactor, pinNumOffset);
+	}
+
+	function buildGPIOPins(inches, mm) {
+		return buildPins('G6|G5|G4|A5|A4|A3|A2|A1|A0|5V', inches, mm, 2);
 	}
 
 	function init(data, parent) {
@@ -77,7 +98,7 @@
 			var name = _.isFunction(self.name) ? '-' + _.slugify(self.name()) : '';
 			return self.typeCode() + name;
 		});
-		self.tooltipTmpl = ko.computed(function() { return '#' + self.code() + '-tmpl, #' + self.typeCode() + '-tmpl'; });
+		self.tooltipTmpl = ko.computed(function() { return '#' + self.code() + '-tooltip-tmpl, #' + self.typeCode() + '-tooltip-tmpl'; });
 		self.tooltipTmplClass = ko.computed(function() { return self.code() + '-tooltip ' + self.typeCode() + '-tooltip'; });
 		self.hovered = ko.observable(false);
 	}
@@ -97,9 +118,21 @@
 		init.apply(self, arguments);
 	}
 
-	function Pin() {
+	function Pin(data, pinGroup) {
 		var self = this;
 		init.apply(self, arguments);
+		self.tooltipTmpl = ko.computed(function() {
+			var code = self.code()
+				, pinGroupCode = 'pin-group-' + _.slugify(pinGroup.name())
+			;
+			return '#' + pinGroupCode + '-' + code + '-tooltip-tmpl, #' + code + '-tooltip-tmpl, #' + self.typeCode() + '-tooltip-tmpl';
+		});
+		self.fullName = ko.computed(function() {
+			var name = self.name()
+				, desc = self.description()
+			;
+			return name === desc ? name : name + ' (' + desc + ')';
+		});
 	}
 
 	function PinGroup() {

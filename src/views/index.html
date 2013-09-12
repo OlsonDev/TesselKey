@@ -84,32 +84,243 @@
 			</ul>
 		</script>
 
-		<script type="text/html" id="chip-tmpl">
-			<span class="type">Chip</span>
-			<span class="name" data-bind="text: name"></span>
-		</script>
-
-		<script type="text/html" id="switch-tmpl">
-			<span class="name" data-bind="text: name"></span>
-			<span class="description" data-bind="text: description"></span>
-		</script>
-
-		<script type="text/html" id="led-tmpl">
-			<span class="type">LED</span>
-			<span class="name" data-bind="text: name"></span>
-			<span class="description" data-bind="text: description"></span>
-		</script>
-
-		<script type="text/html" id="pin-group-tmpl">
-			<span class="type">Pin group</span>
-			<span class="name" data-bind="text: name"></span>
-		</script>
-
-		<script type="text/html" id="pin-tmpl">
-			<!-- ko template: { name: $parent.tooltipTmpl, data: $parent } --><!-- /ko -->
+		<script type="text/html" id="chip-tooltip-tmpl">
+			<div class="information">
+				<span class="label">Chip</span>
+				<span class="value" data-bind="text: name"></span>
+			</div>
 			<hr/>
-			<span class="type">Pin</span>
-			<span class="name" data-bind="text: name"></span>
+		</script>
+
+		<script type="text/html" id="switch-tooltip-tmpl">
+			<div class="information">
+				<span class="label">Switch</span>
+				<span class="value" data-bind="text: name"></span>
+			</div>
+			<hr/>
+			<span class="description" data-bind="text: description"></span>
+		</script>
+
+		<script type="text/html" id="led-tooltip-tmpl">
+			<div class="information">
+				<span class="label">LED</span>
+				<span class="value" data-bind="text: name"></span>
+			</div>
+			<hr/>
+			<span class="description" data-bind="text: description"></span>
+		</script>
+
+		<script type="text/html" id="pin-group-tooltip-tmpl">
+			<div class="information">
+				<span class="label">Pin group</span>
+				<span class="value" data-bind="text: description"></span>
+			</div>
+			<div class="information">
+				<span class="label"># pins in group</span>
+				<span class="value" data-bind="text: numPins"></span>
+			</div>
+			<hr/>
+		</script>
+
+		<script type="text/html" id="pin-tooltip-tmpl">
+			<!-- ko template: { name: $parent.tooltipTmpl, data: $parent } --><!-- /ko -->
+			<div class="information">
+				<span class="label">Pin</span>
+				<span class="value" data-bind="text: fullName"></span>
+			</div>
+			<div class="information">
+				<span class="label">Pin #</span>
+				<span class="value" data-bind="text: pinNum"></span>
+			</div>
+			<ul>
+				<li><span data-bind="text: inchesToEdge"></span>&rdquo; (<span data-bind="text: mmToEdge"></span>mm) from the board edge</li>
+				<li>0.1&rdquo; (2.54mm) from other pins</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="chip-microcontroller-tooltip-tmpl">
+			<span class="value">NXP LPC1830</span>
+			<hr/>
+			<ul>
+				<li>ARM Cortex-M3 based</li>
+				<li>180MHz</li>
+				<li>200 kB of on-chip SRAM</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="chip-flash-tooltip-tmpl">
+			<span class="value">32MB Flash</span>
+		</script>
+
+		<script type="text/html" id="chip-ram-tooltip-tmpl">
+			<span class="value">32MB SDRAM</span>
+		</script>
+
+		<script type="text/html" id="chip-wi-fi-tooltip-tmpl">
+			<span class="value">Texas Instruments CC3000 Wi-Fi Radio</span>
+			<hr/>
+			<ul>
+				<li>IEEE 802.11 b/g</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-gnd-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Ground</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-3v3-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>3.3V power rail</li>
+				<li>Marked with white box around pin</li>
+				<li>Onboard regulator is rated at 1A</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-scl-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Common for the entire board</li>
+				<li>I²C clock line</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-sda-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Common for the entire board</li>
+				<li>I²C data line</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-clk-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Common for the entire board</li>
+				<li>SPI clock line</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-miso-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Common for the entire board</li>
+				<li>SPI Master In/Slave Out</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-mosi-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Common for the entire board</li>
+				<li>SPI Master Out/Slave In</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-5v-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>5V USB power rail</li>
+				<li>Also input for 3.3V regulator</li>
+				<li>Not recommended as source/sink of significant current</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-gpio-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Unique to this pin group</li>
+				<li>General Purpose Input/Output</li>
+				<li>User-configurable</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-adc-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Unique to this pin group</li>
+				<li>10-bit ADC (Analog-to-Digital Converter)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-group-gpio-bank-pin-g1-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Unique to GPIO Bank</li>
+				<li>General Purpose Input/Output</li>
+				<li>User-configurable</li>
+				<li>Doubles as UART TX (universal asynchronous transmitter)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-group-gpio-bank-pin-g2-tooltip-tmpl">
+			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Unique to GPIO Bank</li>
+				<li>General Purpose Input/Output</li>
+				<li>User-configurable</li>
+				<li>Doubles as UART RX (universal asynchronous receiver)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-g1-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+		<script type="text/html" id="pin-g2-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+		<script type="text/html" id="pin-g3-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+		<script type="text/html" id="pin-g4-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+		<script type="text/html" id="pin-g5-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+		<script type="text/html" id="pin-g6-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
+
+		<script type="text/html" id="pin-a0-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Cannot function as anything else</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-a1-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Referenced to GND</li>
+				<li>Cannot function as anything else</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-a2-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Referenced to GND &amp; 3.3V</li>
+				<li>User-configurable</li>
+				<li>Doubles as 10-bit DAC (Digital-to-Analog Converter)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-a3-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Referenced to GND &amp; 3.3V</li>
+				<li>User-configurable</li>
+				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-a4-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>Referenced to GND &amp; 3.3V</li>
+				<li>User-configurable</li>
+				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
+			</ul>
+		</script>
+
+		<script type="text/html" id="pin-a5-tooltip-tmpl">
+			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
+			<ul>
+				<li>User-configurable</li>
+				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
+			</ul>
 		</script>
 
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.3.1/lodash.min.js"></script>

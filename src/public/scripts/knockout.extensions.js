@@ -77,12 +77,15 @@
 
 	var makeTemplateSource = ko.templateEngine.prototype.makeTemplateSource;
 	ko.templateEngine.prototype.makeTemplateSource = function(templateSource, templateDocument) {
+		var id;
 		if (!_.isString(templateSource)) return makeTemplateSource.apply(this, arguments);
-		return makeTemplateSource.call(
-			this
-			, $(templateSource.replace(/^#?/, '#'), templateDocument).prop('id') || templateSource
-			, templateDocument
-		);
+		_.each(templateSource.split(','), function(selector) {
+			var maybeTemplate = $(selector.replace(/^\s*#?/, '#'), templateDocument);
+			if (!maybeTemplate.length) return;
+			id = maybeTemplate.prop('id');
+			return false;
+		});
+		return makeTemplateSource.call(this, id || templateSource, templateDocument);
 	};
 
 	// data-bind="tooltip: 'someID'"
@@ -98,7 +101,7 @@
 			var template = null;
 			var isPO = $.isPlainObject(options);
 			template = ko.unwrap(isPO ? options.template : options);
-			options = isPO ? $.extend(defaults, options) : defaults;
+			options = isPO ? $.extend(defaults, ko.toJS(options)) : defaults;
 			delete options.template;
 			options.items = elem;
 			options.content = function() {

@@ -34,7 +34,7 @@ form {
 		.inline-block-middle;
 		&[type="range"] {
 			-webkit-appearance: none !important;
-			width: 200px;
+			width: 270px;
 			height: 39px;
 			background: fade(@tessel, 10%);
 			&::-webkit-slider-thumb {
@@ -79,13 +79,13 @@ form {
 				&:not(:hover) {
 					background: fade(@chip, @active);
 					transform: scale(@scale);
-					&.chip-uc {
+					&.chip-microcontroller {
 						transform: rotate(45deg) scale(@scale);
 					}
 				}
 			}
 		}
-		.chip-uc {
+		.chip-microcontroller {
 			width: 21.8%;
 			height: 18.5%;
 			bottom: 24.4%;
@@ -340,6 +340,11 @@ form {
 			}
 		}
 	}
+	.chips {
+		.chip-microcontroller {
+			width: 200px;
+		}
+	}
 	.pin-groups {
 		> li {
 			.inline-block-top;
@@ -364,7 +369,7 @@ form {
 					column-gap: 0;
 					li {
 						padding-right: 15px;
-						&:nth-child(1n+10) {
+						&:nth-child(1n+11) {
 							padding-left: 15px;
 							padding-right: 10px;
 						}
@@ -394,8 +399,75 @@ form {
 	border-radius: 2px;
 	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
 	min-width: 100px;
-	max-width: 400px;
+	max-width: 500px;
+	&.pin-tooltip {
+		min-width: 200px;
+	}
+	hr {
+		border: 2px solid @tessel;
+		position: relative;
+		&:before, &:after {
+			content: '';
+			position: absolute;
+			display: block;
+			top: -6px;
+			width: 12px;
+			height: 12px;
+			background: radial-gradient(circle, #fff 30%, @tessel 30%, @tessel 70%, transparent 70%);
+		}
+		&:before {
+			left: -3px;
+		}
+		&:after {
+			right: -3px;
+		}
+	}
 	p {
 		margin: 0 0 0.2em;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			position: relative;
+			padding-left: 25px;
+			&:before, &:after {
+				content: '';
+				position: absolute;
+				display: block;
+				top: 50%;
+				left: -1px;
+			}
+			&:before {
+				width: 20px;
+				height: 4px;
+				border-radius: 2px;
+				background: @tessel;
+				margin-top: -2px;
+			}
+			&:after {
+				width: 12px;
+				height: 12px;
+				margin-top: -6px;
+				background: radial-gradient(circle, #fff 30%, @tessel 30%, @tessel 70%, transparent 70%);
+			}
+		}
+	}
+	.information {
+		position: relative;
+		height: 21px;
+		line-height: 21px;
+		span {
+			.inline-block-middle;
+			position: absolute;
+			top: 0;
+		}
+		.label {
+			left: 0;
+		}
+		.value {
+			right: 0;
+		}
 	}
 }
