@@ -162,11 +162,13 @@
 	function ViewModel() {
 		var self = this;
 		init.apply(self, arguments);
+		self.ready = ko.observable(false);
 	}
 
 	window.vm = vm = new ViewModel(vm);
 
 	$(function() {
 		ko.applyBindings(vm);
+		vm.ready(true);
 	});
 }());

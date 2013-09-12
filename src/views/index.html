@@ -13,7 +13,7 @@
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 	</head>
 	<body>
-		<!-- ko with: board -->
+		<div style="display: none;" data-bind="visible: ready, with: board">
 			<div id="form-and-info">
 				<h1>Tessel Key</h1>
 				<form>
@@ -36,7 +36,7 @@
 				<img alt="Tessel" src="/images/tessel.webp"/>
 				<!-- ko template: 'board-tmpl' --><!-- /ko -->
 			</div>
-		<!-- /ko -->
+		</div>
 
 		<a id="fork-me-on-github" href="https://github.com/OlsonDev/TesselKey" title="Awww, yea!">
 			<img src="/images/fork-me-on-github.webp" alt="Fork me on GitHub">
