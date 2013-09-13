@@ -47,6 +47,7 @@ form {
 			-webkit-appearance: none !important;
 			width: 270px;
 			height: 39px;
+			padding: 0;
 			background: fade(@tessel, 10%);
 			&::-webkit-slider-thumb {
 				-webkit-appearance: none !important;
@@ -58,6 +59,13 @@ form {
 			&::-moz-range-track {
 				background: none;
 				border: none;
+			}
+			&::-ms-fill-upper, &::-ms-fill-lower, &::-ms-track {
+				background: none;
+				border: none;
+			}
+			&::-ms-thumb {
+				.range-thumb();
 			}
 		}
 	}

@@ -3,9 +3,9 @@
 	'use strict';
 	var fnProto = Function.prototype
 		, ctorName = fnProto.name !== undefined
-		, funcName = (/function\s+.+\s*\(/)
+		, funcName = (/function\s+(.+)\s*\(/)
 		, getObjectTypeName = function() {
-			var results = funcName.exec(this.toString());
+			var results = funcName.exec(this.constructor.toString());
 			return results && results.length ? results[1] : '';
 		}
 	;
