@@ -10,6 +10,7 @@ var temp    = require('temp')
 	, scripts = path.join(pub     , 'scripts')
 	, app     = express()
 	, trimmer = require('./modules/trimmer.js')
+	, webp    = require('./modules/webp.js')
 	, port    = process.env.PORT || 5000
 ;
 
@@ -18,6 +19,7 @@ app.disable('X-Powered-By');
 app.configure(function() {
 	app.use(express.compress());
 	app.use(trimmer());
+	app.use(webp(pub));
 	app.use(express.favicon(path.join(images, 'favicon.ico')));
 	app.use('/images',  express.static(images));
 	app.use('/scripts', express.static(scripts));
