@@ -1,5 +1,11 @@
 @import "variables";
 @import "mixins";
+.range-thumb() {
+	background: @tessel;
+	height: 39px;
+	width: 2px;
+	border: none;
+}
 body {
 	padding: 10px;
 	.segoe-ui-semilight();
@@ -8,7 +14,6 @@ body {
 	position: absolute;
 	top: 0;
 	right: 0;
-	//border: 0;
 }
 #form-and-info {
 	.inline-block-top;
@@ -45,9 +50,14 @@ form {
 			background: fade(@tessel, 10%);
 			&::-webkit-slider-thumb {
 				-webkit-appearance: none !important;
-				background: @tessel;
-				height: 39px;
-				width: 2px;
+				.range-thumb();
+			}
+			&::-moz-range-thumb {
+				.range-thumb();
+			}
+			&::-moz-range-track {
+				background: none;
+				border: none;
 			}
 		}
 	}
