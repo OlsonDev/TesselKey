@@ -10,6 +10,7 @@ var temp    = require('temp')
 	, scripts = path.join(pub     , 'scripts')
 	, app     = express()
 	, trimmer = require('./modules/trimmer.js')
+	, port    = process.env.PORT || 5000
 ;
 
 app.disable('X-Powered-By');
@@ -25,4 +26,6 @@ app.configure(function() {
 	app.use(express.static(views));
 });
 
-app.listen(80);
+app.listen(port, function() {
+	console.log('Listening on port ' + port);
+});
