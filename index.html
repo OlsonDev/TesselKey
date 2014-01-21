@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Tessel Key by OlsonDev</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/OlsonDev/TesselKey">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/OlsonDev/TesselKey/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/OlsonDev/TesselKey/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Tessel Key</h1>
+          <p>Tessel Key aims to be fully configurable NKRO keyboard software for the Tessel microcontroller.</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/OlsonDev">OlsonDev</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
+<a name="goals-of-this-project" class="anchor" href="#goals-of-this-project"><span class="octicon octicon-link"></span></a>Goals of this project</h1>
+
+<ul>
+<li>Present Tessel as a keyboard to a USB host
+
+<ul>
+<li>Ideally, (optionally) present itself as multiple keyboards to bypass USB 6-key limit</li>
+</ul>
+</li>
+<li>Present Tessel as a keyboard via Bluetooth module (lower priority)</li>
+<li>Run <a href="http://expressjs.com">express</a> + <a href="http://socket.io">socket.io</a> on Tessel, provide Web UI to:
+
+<ul>
+<li>Map GPIO pin to specific NKRO row or column (hopefully 1 time configuration)</li>
+<li>Map row + column combination to specific key
+
+<ul>
+<li>Ability to edit/save/load profiles</li>
+</ul>
+</li>
+<li>Set up macros (lower priority)</li>
+<li>Layout keys physically (drag-n-drop) for visualization purposes
+
+<ul>
+<li>Ability to edit/save/load layouts</li>
+</ul>
+</li>
+<li>Toggle actually sending keys to host (for debugging purposes)</li>
+<li>Force pin/row/column state</li>
+<li>Display real-time status information:
+
+<ul>
+<li>Pin/row/column/key state (on, off, mode, etc.). 3 views:
+
+<ul>
+<li>Tessel view (shows pin state)</li>
+<li>Grid view (shows row state and column state)</li>
+<li>Custom layout view (shows key state (mapped row + column combination)</li>
+</ul>
+</li>
+<li>Each view is actually 2 views: graphical and textual
+
+<ul>
+<li>This means the custom layout view will essentially be a keylogger</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+      </section>
+
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
