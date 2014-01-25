@@ -1,498 +1,76 @@
 @import "variables";
 @import "mixins";
-.range-thumb() {
-	background: @tessel;
-	height: 39px;
-	width: 2px;
-	border: none;
-}
 body {
-	padding: 10px;
+	padding: 0;
 	.segoe-ui-semilight();
 	overflow-y: scroll;
+	> nav {
+		height: 45px;
+		background: #eee;
+		user-select: none;
+		> a {
+			color: #000;
+			text-decoration: none;
+			font-weight: bold;
+			line-height: 45px;
+			.inline-block;
+			padding: 0 15px;
+			transition: all 0.25s, background-color 0;
+			box-shadow: 0 22px 0 -20px fadeOut(@tessel, 100%);
+			&:before {
+				display: block;
+				height: 100%;
+				width: 100%;
+				box-shadow: 1px 0 0 0 #bbb;
+			}
+			&:hover {
+				background: #e6e6e6;
+			}
+			&:active {
+				box-shadow: 0 22px 0 -20px @tessel;
+			}
+			&.active {
+				background: #ddd;
+				box-shadow: 0 2px 0 0 @tessel;
+			}
+		}
+	}
+}
+section {
+	background: #eee;
+	margin: 10px;
+	padding: 10px;
+	min-height: 400px;
+}
+#keys-available {
+	.code {
+		width: 50px;
+		input {
+			width: 50px;
+		}
+	}
 }
 #fork-me-on-github {
-	position: absolute;
-	top: 0;
-	right: 0;
+	position: fixed;
+	bottom: -25px;
+	right: -88px;
+	padding: 4px 40px;
+	transform-origin: left bottom;
+	transform: rotate(-45deg);
+	box-shadow: 0 0 0 3px @tessel, 0 6px 3px 0 rgba(0, 0, 0, 0.5);
+	background: @tessel;
+	border: 2px dotted rgba(255, 255, 255, 0.6);
+	color: #fff;
+	text-shadow: 2px 2px rgba(0, 0, 0, 0.5);
+	text-decoration: none;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-#form-and-info {
-	.inline-block-top;
-	margin-right: 40px;
-	h1 {
-		.segoe-ui();
-		color: @tessel;
-		.inline-block-middle;
-		margin: 0 0 10px;
-		text-align: center;
-	}
-}
-form {
-	margin-bottom: 10px;
-	div {
-		margin: 10px 0 0;
-		&:first-child {
-			margin-top: 0;
-		}
-	}
-	label {
-		.inline-block-middle;
-		min-width: 110px;
-		background: #eee;
-		padding: 10px;
-		margin-right: 10px;
-	}
-	input {
-		.inline-block-middle;
-		&[type="range"] {
-			-webkit-appearance: none !important;
-			width: 270px;
-			height: 39px;
-			padding: 0;
-			background: fade(@tessel, 10%);
-			&::-webkit-slider-thumb {
-				-webkit-appearance: none !important;
-				.range-thumb();
-			}
-			&::-moz-range-thumb {
-				.range-thumb();
-			}
-			&::-moz-range-track {
-				background: none;
-				border: none;
-			}
-			&::-ms-fill-upper, &::-ms-fill-lower, &::-ms-track {
-				background: none;
-				border: none;
-			}
-			&::-ms-thumb {
-				.range-thumb();
-			}
-		}
-	}
-}
-#tessel {
-	.inline-block-top;
-	user-select: none;
-	position: relative;
-	> * {
-		font-size: 0;
-	}
-	li {
-		display: none;
-	}
-	&:hover, .hovered-child {
-		li {
-			display: block;
-		}
-	}
-	> img {
-		width: 100%;
-		height: 100%;
-		display: block;
-	}
-	li {
-		position: absolute;
-		list-style-type: none;
-	}
-	> .chips {
-		@scale: 1.08;
-		> li {
-			background: fade(@chip, @inactive);
-			&.hovered {
-				background: fade(@chip, @hover);
-				&:not(:hover) {
-					background: fade(@chip, @active);
-					transform: scale(@scale);
-					&.chip-microcontroller {
-						transform: rotate(45deg) scale(@scale);
-					}
-				}
-			}
-		}
-		.chip-microcontroller {
-			width: 21.8%;
-			height: 18.5%;
-			bottom: 24.4%;
-			left: 39.2%;
-			transform: rotate(45deg);
-		}
-		.chip-flash {
-			width: 11.1%;
-			height: 12.0%;
-			top: 40.7%;
-			left: 29.4%;
-		}
-		.chip-ram {
-			width: 23.5%;
-			height: 12.2%;
-			top: 40.5%;
-			right: 32.3%;
-		}
-		.chip-wi-fi {
-			width: 24.3%;
-			height: 24.4%;
-			top: 8.4%;
-			right: 26.2%;
-		}
-	}
-	> .switches {
-		> li {
-			background: fade(@switch, @inactive);
-			&.hovered {
-				background: fade(@switch, @hover);
-				&:not(:hover) {
-					background: fade(@switch, @active);
-					transform: scale(1.15);
-				}
-			}
-		}
-		.switch-s1 {
-			width: 5.6%;
-			height: 6.0%;
-			bottom: 3.2%;
-			right: 20.85%;
-		}
-		.switch-s2 {
-			width: 7.6%;
-			height: 4.7%;
-			bottom: 12.4%;
-			right: 28.2%;
-			background: fade(@smartConfig, @inactive);
-			&.hovered {
-				background: fade(@smartConfig, @hover);
-				&:not(:hover) {
-					background: fade(@smartConfig, @active);
-				}
-			}
-		}
-	}
-	> .leds {
-		> li {
-			background: fade(@led, @inactive);
-			width: 2.2%;
-			&.hovered {
-				background: fade(@led, @hover);
-				&:not(:hover) {
-					background: fade(@led, @active);
-					transform: scale(1.15);
-				}
-			}
-		}
-		.led-d1 {
-			height: 4.3%;
-			top: 7.3%;
-			left: 39.9%;
-		}
-		.led-d2 {
-			height: 4.5%;
-			bottom: 11.0%;
-			left: 28.4%;
-		}
-		.led-d3 {
-			height: 4.5%;
-			bottom: 11.0%;
-			left: 31.2%;
-		}
-		.led-d4 {
-			height: 4.5%;
-			bottom: 20.0%;
-			left: 31.2%;
-		}
-		.led-d5 {
-			height: 4.5%;
-			bottom: 20.0%;
-			left: 28.4%;
-		}
-	}
-	> .pin-groups {
-		> li {
-			background: fade(@pinGroup, @inactive);
-			width: 3.4%;
-			height: 36.6%;
-			&.hovered {
-				background: fade(@pinGroup, @hover);
-				&:not(:hover) {
-					background: fade(@pinGroup, @active);
-					transform: scale(1);
-				}
-			}
-			li {
-				background: fade(@pin, @inactive);
-				&.pin-gnd  { background: fade(@gnd, @inactive); }
-				&.pin-3v3  { background: fade(@3v3, @inactive); }
-				&.pin-clk  { background: fade(@clk, @inactive); }
-				&.pin-5v   { background: fade(@5v, @inactive); }
-				&.pin-miso { background: fade(@miso, @inactive); }
-				&.pin-mosi { background: fade(@mosi, @inactive); }
-				&.pin-scl  { background: fade(@scl, @inactive); }
-				&.pin-sda  { background: fade(@sda, @inactive); }
-				&.pin-g1, &.pin-g2, &.pin-g3,
-				&.pin-g4, &.pin-g5, &.pin-g6 {
-					background: fade(@gpio, @inactive);
-				}
-				&.hovered {
-					background: fade(@pin, @active);
-					&.pin-gnd  { background: fade(@gnd, @active); }
-					&.pin-3v3  { background: fade(@3v3, @active); }
-					&.pin-clk  { background: fade(@clk, @active); }
-					&.pin-5v   { background: fade(@5v, @active); }
-					&.pin-miso { background: fade(@miso, @active); }
-					&.pin-mosi { background: fade(@mosi, @active); }
-					&.pin-scl  { background: fade(@scl, @active); }
-					&.pin-sda  { background: fade(@sda, @active); }
-					&.pin-g1, &.pin-g2, &.pin-g3,
-					&.pin-g4, &.pin-g5, &.pin-g6 {
-						background: fade(@gpio, @active);
-					}
-				}
-			}
-		}
-		.pin-group-a, .pin-group-c {
-			top: 12.3%;
-		}
-		.pin-group-b, .pin-group-d {
-			bottom: 5.7%;
-		}
-		.pin-group-a, .pin-group-b,
-		.pin-group-c, .pin-group-d {
-			.pins {
-				> li {
-					border-radius: 50%;
-					width: 100%;
-					height: 7.7%;
-					left: 0%;
-				}
-			}
-		}
-		.pin-group-a, .pin-group-b {
-			left: 16.7%;
-			.pins {
-				> li {
-					@max: 92.3%;
-					&:nth-child(1)  { top: @max * 0 / 9; }
-					&:nth-child(2)  { top: @max * 1 / 9; }
-					&:nth-child(3)  { top: @max * 2 / 9; }
-					&:nth-child(4)  { top: @max * 3 / 9; }
-					&:nth-child(5)  { top: @max * 4 / 9; }
-					&:nth-child(6)  { top: @max * 5 / 9; }
-					&:nth-child(7)  { top: @max * 6 / 9; }
-					&:nth-child(8)  { top: @max * 7 / 9; }
-					&:nth-child(9)  { top: @max * 8 / 9; }
-					&:nth-child(10) { top: @max * 9 / 9; }
-				}
-			}
-		}
-		.pin-group-c, .pin-group-d {
-			right: 16.6%;
-			.pins {
-				> li {
-					@max: 92.3%;
-					&:nth-child(1)  { bottom: @max * 0 / 9; }
-					&:nth-child(2)  { bottom: @max * 1 / 9; }
-					&:nth-child(3)  { bottom: @max * 2 / 9; }
-					&:nth-child(4)  { bottom: @max * 3 / 9; }
-					&:nth-child(5)  { bottom: @max * 4 / 9; }
-					&:nth-child(6)  { bottom: @max * 5 / 9; }
-					&:nth-child(7)  { bottom: @max * 6 / 9; }
-					&:nth-child(8)  { bottom: @max * 7 / 9; }
-					&:nth-child(9)  { bottom: @max * 8 / 9; }
-					&:nth-child(10) { bottom: @max * 9 / 9; }
-				}
-			}
-		}
-		.pin-group-gpio-bank {
-			bottom: 0%;
-			left: 26.5%;
-			width: 47%;
-			height: 7.7%;
-			.pins {
-				> li {
-					border-radius: 0;
-					width: 6%;
-					height: 30%;
-					left: 0%;
-					top: 60%;
-					@left: 2.8%;
-					@max: 88.5%;
-					&:nth-child(1n+11) { top: 10%; }
-					&:nth-child(10n+1) { left: @left + (@max * 0 / 9); }
-					&:nth-child(10n+2) { left: @left + (@max * 1 / 9); }
-					&:nth-child(10n+3) { left: @left + (@max * 2 / 9); }
-					&:nth-child(10n+4) { left: @left + (@max * 3 / 9); }
-					&:nth-child(10n+5) { left: @left + (@max * 4 / 9); }
-					&:nth-child(10n+6) { left: @left + (@max * 5 / 9); }
-					&:nth-child(10n+7) { left: @left + (@max * 6 / 9); }
-					&:nth-child(10n+8) { left: @left + (@max * 7 / 9); }
-					&:nth-child(10n+9) { left: @left + (@max * 8 / 9); }
-					&:nth-child(10n+0) { left: @left + (@max * 9 / 9); }
-				}
-			}
-		}
-	}
-	.hovered {
-		display: block;
-		transition: all 0.3s;
-		&:not(:hover) {
-			transform: scale(1.25);
-		}
-	}
-}
-#tessel-info {
-	cursor: default;
-	ul {
-		list-style-type: none;
-		padding: 0;
-		margin: 0 0 10px;
-		.segoe-ui-mono();
-	}
-	.hovered {
-		background: #ddd;
-	}
-	.chips, .switches, .leds {
-		> li {
-			.inline-block-top;
-			background: #eee;
-			text-align: center;
-			width: 60px;
-			margin-left: 10px;
-			padding: 5px 0;
-			&:first-child {
-				margin-left: 0;
-			}
-			&.hovered {
-				box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
-			}
-		}
-	}
-	.chips {
-		.chip-microcontroller {
-			width: 200px;
-		}
-	}
-	.pin-groups {
-		> li {
-			.inline-block-top;
-			background: #eee;
-			text-align: center;
-			width: 60px;
-			margin-left: 10px;
-			padding: 5px 0 0;
-			&:first-child {
-				margin-left: 0;
-			}
-			&.hovered, &.hovered-child {
-				box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.4);
-				> span {
-					color: @tessel;
-				}
-			}
-			&.pin-group-gpio-bank {
-				width: 130px;
-				> .pins {
-					column-count: 2;
-					column-gap: 0;
-					li {
-						padding-right: 15px;
-						&:nth-child(1n+11) {
-							padding-left: 15px;
-							padding-right: 10px;
-						}
-					}
-				}
-			}
-			> span {
-				font-weight: bold;
-			}
-			ul {
-				margin-top: 5px;
-				text-align: left;
-				li {
-					padding: 5px 10px;
-				}
-			}
-		}
-	}
-}
-.ui-tooltip {
-	position: absolute;
-	.inline-block;
-	padding: 10px;
-	background: #fff;
-	border: 1px solid #444;
-	color: #444;
-	border-radius: 2px;
-	box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
-	min-width: 100px;
-	max-width: 500px;
-	&.pin-tooltip {
-		min-width: 200px;
-	}
-	hr {
-		border: 2px solid @tessel;
-		position: relative;
-		&:before, &:after {
-			content: '';
-			position: absolute;
-			display: block;
-			top: -6px;
-			width: 12px;
-			height: 12px;
-			background: radial-gradient(circle, #fff 30%, @tessel 30%, @tessel 70%, transparent 70%);
-		}
-		&:before {
-			left: -3px;
-		}
-		&:after {
-			right: -3px;
-		}
-	}
-	p {
-		margin: 0 0 0.2em;
-	}
-	ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		li {
-			position: relative;
-			padding-left: 25px;
-			&:before, &:after {
-				content: '';
-				position: absolute;
-				display: block;
-				top: 50%;
-				left: -1px;
-			}
-			&:before {
-				width: 20px;
-				height: 4px;
-				border-radius: 2px;
-				background: @tessel;
-				margin-top: -2px;
-			}
-			&:after {
-				width: 12px;
-				height: 12px;
-				margin-top: -6px;
-				background: radial-gradient(circle, #fff 30%, @tessel 30%, @tessel 70%, transparent 70%);
-			}
-		}
-	}
-	.information {
-		position: relative;
-		height: 21px;
-		line-height: 21px;
-		span {
-			.inline-block-middle;
-			position: absolute;
-			top: 0;
-		}
-		.label {
-			left: 0;
-		}
-		.value {
-			right: 0;
-		}
-	}
+h1 {
+	.segoe-ui();
+	color: @tessel;
+	.inline-block-middle;
+	margin: 0 0 10px;
 }

@@ -12,319 +12,53 @@
 		<link rel="stylesheet" type="text/css" href="/styles/all.css"/>
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 	</head>
-	<body>
-		<div style="display: none;" data-bind="visible: ready, with: board">
-			<div id="form-and-info">
-				<h1>Tessel Key</h1>
-				<form>
-					<div>
-						<label for="scale">Scale</label>
-						<input id="scale" type="range" min="0.2" max="1" step="any" data-bind="value: scale, valueUpdate: ['afterkeydown', 'input']"/>
-					</div>
-					<div>
-						<label for="rotation">Rotation</label>
-						<input id="rotation" type="range" min="-180" max="180" step="any" data-bind="value: rotation, valueUpdate: ['afterkeydown', 'input']"/>
-					</div>
-				</form>
+	<body class="not-ready" data-bind="css: { ready: ready, 'not-ready': !ready() }">
+		<nav>
+			<!-- ko template: { name: 'nav-tmpl', data: { href: 'matrix', text: 'Matrix' } } --><!-- /ko -->
+			<!-- ko template: { name: 'nav-tmpl', data: { href: 'layout', text: 'Layout' } } --><!-- /ko -->
+			<!-- ko template: { name: 'nav-tmpl', data: { href: 'profile', text: 'Profile' } } --><!-- /ko -->
+			<!-- ko template: { name: 'nav-tmpl', data: { href: 'keys-available', text: 'Keys available' } } --><!-- /ko -->
+		</nav>
 
-				<div id="tessel-info">
-					<!-- ko template: 'board-tmpl' --><!-- /ko -->
-				</div>
-			</div>
+		<section id="matrix" data-bind="visible: tab() === 'matrix'">
 
-			<div id="tessel" data-bind="style: { width: width, height: height, '-webkit-transform': transform, transform: transform }">
-				<img alt="Tessel" src="/images/tessel.webp"/>
-				<!-- ko template: 'board-tmpl' --><!-- /ko -->
-			</div>
-		</div>
+		</section>
 
-		<a id="fork-me-on-github" href="https://github.com/OlsonDev/TesselKey" title="Awww, yea!">
-			<img src="/images/fork-me-on-github.webp" alt="Fork me on GitHub">
-		</a>
+		<section id="layout" data-bind="visible: tab() === 'layout'">
 
-		<script type="text/html" id="list-item-tmpl">
-			<li data-bind="
-				text: name
-				, 'class': code
-				, css: {
-					hovered: hovered
-				}
-				, event: {
-					mouseenter: hovered.bind($data, true)
-					, mouseleave: hovered.bind($data, false)
-				}
-				, tooltip: {
-					template: tooltipTmpl
-					, tooltipClass: tooltipTmplClass
-					, track: false
-					, position: {
-						my: 'left top'
-						, at: 'right+10 top'
-					}
-				}
-			"></li>
-		</script>
+		</section>
 
-		<script type="text/html" id="board-tmpl">
-			<ul class="chips" data-bind="template: { name: 'list-item-tmpl', foreach: chips }"></ul>
-			<ul class="switches" data-bind="template: { name: 'list-item-tmpl', foreach: switches }"></ul>
-			<ul class="leds" data-bind="template: { name: 'list-item-tmpl', foreach: leds }"></ul>
+		<section id="profile" data-bind="visible: tab() === 'profile'">
 
-			<ul class="pin-groups" data-bind="foreach: pinGroups">
-				<li data-bind="
-					'class': code
-					, css: {
-						hovered: hovered
-						, 'hovered-child': hasHoveredChild
-					}
-					, event: {
-						mouseenter: hovered.bind($data, true)
-						, mouseleave: hovered.bind($data, false)
-					}
-				">
-					<span data-bind="text: name"></span>
-					<ul class="pins" data-bind="template: { name: 'list-item-tmpl', foreach: pins }"></ul>
-				</li>
-			</ul>
-		</script>
+		</section>
 
-		<script type="text/html" id="chip-tooltip-tmpl">
-			<div class="information">
-				<span class="label">Chip</span>
-				<span class="value" data-bind="text: name"></span>
-			</div>
-			<hr/>
-		</script>
+		<section id="keys-available" data-bind="visible: tab() === 'keys-available'">
+			<button data-bind="click: addKeyAvailable">Add key</button>
+			<table>
+				<thead>
+					<tr>
+						<th class="code">Code</th>
+						<th class="display-name">Display name</th>
+						<th class="full-name">Full name</th>
+						<th class="remove"></th>
+					</tr>
+				</thead>
+				<tbody data-bind="foreach: keysAvailable">
+					<tr>
+						<td class="code"><input type="text" placeholder="Code" data-bind="value: code, focusOnce: true"/></td>
+						<td class="display-name"><input type="text" placeholder="Display name" data-bind="value: displayName"/></td>
+						<td class="full-name"><input type="text" placeholder="Full name" data-bind="value: fullName"/></td>
+						<td><button data-bind="click: function() { $root.keysAvailable.remove($data); }">Remove</button></td>
+						<td><button data-bind="click: $root.keysAvailable.remove.bind($root.keysAvailable, $data)">Remove</button></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
 
-		<script type="text/html" id="switch-tooltip-tmpl">
-			<div class="information">
-				<span class="label">Switch</span>
-				<span class="value" data-bind="text: name"></span>
-			</div>
-			<hr/>
-			<span class="description" data-bind="text: description"></span>
-		</script>
+		<a id="fork-me-on-github" href="https://github.com/OlsonDev/TesselKey" title="Awww, yea!" target="_blank">Fork me on GitHub</a>
 
-		<script type="text/html" id="led-tooltip-tmpl">
-			<div class="information">
-				<span class="label">LED</span>
-				<span class="value" data-bind="text: name"></span>
-			</div>
-			<hr/>
-			<span class="description" data-bind="text: description"></span>
-		</script>
-
-		<script type="text/html" id="pin-group-tooltip-tmpl">
-			<div class="information">
-				<span class="label">Pin group</span>
-				<span class="value" data-bind="text: description"></span>
-			</div>
-			<div class="information">
-				<span class="label"># pins in group</span>
-				<span class="value" data-bind="text: numPins"></span>
-			</div>
-			<hr/>
-		</script>
-
-		<script type="text/html" id="pin-tooltip-tmpl">
-			<!-- ko template: { name: $parent.tooltipTmpl, data: $parent } --><!-- /ko -->
-			<div class="information">
-				<span class="label">Pin</span>
-				<span class="value" data-bind="text: fullName"></span>
-			</div>
-			<div class="information">
-				<span class="label">Pin #</span>
-				<span class="value" data-bind="text: pinNum"></span>
-			</div>
-			<ul>
-				<li><span data-bind="text: inchesToEdge"></span>&rdquo; (<span data-bind="text: mmToEdge"></span>mm) from the board edge</li>
-				<li>0.1&rdquo; (2.54mm) from other pins</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="chip-microcontroller-tooltip-tmpl">
-			<span class="value">NXP LPC1830</span>
-			<hr/>
-			<ul>
-				<li>ARM Cortex-M3 based</li>
-				<li>180MHz</li>
-				<li>200 kB of on-chip SRAM</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="chip-flash-tooltip-tmpl">
-			<span class="value">32MB Flash</span>
-		</script>
-
-		<script type="text/html" id="chip-ram-tooltip-tmpl">
-			<span class="value">32MB SDRAM</span>
-		</script>
-
-		<script type="text/html" id="chip-wi-fi-tooltip-tmpl">
-			<span class="value">Texas Instruments CC3000 Wi-Fi Radio</span>
-			<hr/>
-			<ul>
-				<li>IEEE 802.11 b/g</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-gnd-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Ground</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-3v3-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>3.3V power rail</li>
-				<li>Marked with white box around pin</li>
-				<li>Onboard regulator is rated at 1A</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-scl-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Common for the entire board</li>
-				<li>I²C clock line</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-sda-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Common for the entire board</li>
-				<li>I²C data line</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-clk-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Common for the entire board</li>
-				<li>SPI clock line</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-miso-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Common for the entire board</li>
-				<li>SPI Master In/Slave Out</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-mosi-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Common for the entire board</li>
-				<li>SPI Master Out/Slave In</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-5v-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>5V USB power rail</li>
-				<li>Also input for 3.3V regulator</li>
-				<li>Not recommended as source/sink of significant current</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-gpio-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Unique to this pin group</li>
-				<li>General Purpose Input/Output</li>
-				<li>User-configurable</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-adc-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Unique to this pin group</li>
-				<li>10-bit ADC (Analog-to-Digital Converter)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-group-gpio-bank-pin-g1-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Unique to GPIO Bank</li>
-				<li>General Purpose Input/Output</li>
-				<li>User-configurable</li>
-				<li>Doubles as UART TX (universal asynchronous transmitter)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-group-gpio-bank-pin-g2-tooltip-tmpl">
-			<!-- ko template: 'pin-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Unique to GPIO Bank</li>
-				<li>General Purpose Input/Output</li>
-				<li>User-configurable</li>
-				<li>Doubles as UART RX (universal asynchronous receiver)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-g1-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-		<script type="text/html" id="pin-g2-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-		<script type="text/html" id="pin-g3-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-		<script type="text/html" id="pin-g4-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-		<script type="text/html" id="pin-g5-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-		<script type="text/html" id="pin-g6-tooltip-tmpl"><!-- ko template: 'pin-gpio-tooltip-tmpl' --><!-- /ko --></script>
-
-		<script type="text/html" id="pin-a0-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Cannot function as anything else</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-a1-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Referenced to GND</li>
-				<li>Cannot function as anything else</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-a2-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Referenced to GND &amp; 3.3V</li>
-				<li>User-configurable</li>
-				<li>Doubles as 10-bit DAC (Digital-to-Analog Converter)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-a3-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Referenced to GND &amp; 3.3V</li>
-				<li>User-configurable</li>
-				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-a4-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>Referenced to GND &amp; 3.3V</li>
-				<li>User-configurable</li>
-				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
-			</ul>
-		</script>
-
-		<script type="text/html" id="pin-a5-tooltip-tmpl">
-			<!-- ko template: 'pin-adc-tooltip-tmpl' --><!-- /ko -->
-			<ul>
-				<li>User-configurable</li>
-				<li>Doubles as digital GPIO (General Purpose Input/Output)</li>
-			</ul>
+		<script type="text/html" id="nav-tmpl">
+			<a data-bind="text: text, attr: { href: '#' + href }, css: { active: $root.tab() === href }, click: function() { $root.tab(href); return true; }"></a>
 		</script>
 
 		<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
