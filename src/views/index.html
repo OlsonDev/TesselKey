@@ -49,7 +49,6 @@
 						<td class="display-name"><input type="text" placeholder="Display name" data-bind="value: displayName"/></td>
 						<td class="full-name"><input type="text" placeholder="Full name" data-bind="value: fullName"/></td>
 						<td><button data-bind="click: function() { $root.keysAvailable.remove($data); }">Remove</button></td>
-						<td><button data-bind="click: $root.keysAvailable.remove.bind($root.keysAvailable, $data)">Remove</button></td>
 					</tr>
 				</tbody>
 			</table>
