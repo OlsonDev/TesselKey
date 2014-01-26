@@ -51,3 +51,14 @@
 		return unaccent(str);
 	};
 }());
+(function() {
+	'use strict';
+	var old = ko.mapping.toJSON;
+	ko.mapping.toJSON = function(obj) {
+		var args = $.makeArray(arguments)
+			, js = ko.mapping.toJS(obj)
+		;
+		args[0] = js;
+		return ko.toJSON.apply(ko, args);
+	};
+}());

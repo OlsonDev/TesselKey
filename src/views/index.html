@@ -45,13 +45,14 @@
 				</thead>
 				<tbody data-bind="foreach: keysAvailable">
 					<tr>
-						<td class="code"><input type="text" placeholder="Code" data-bind="value: code, focusOnce: true"/></td>
-						<td class="display-name"><input type="text" placeholder="Display name" data-bind="value: displayName"/></td>
-						<td class="full-name"><input type="text" placeholder="Full name" data-bind="value: fullName"/></td>
+						<td class="code"><input type="text" placeholder="Code" data-bind="value: numCode, focusOnce: true, valueUpdate: 'keyup'"/></td>
+						<td class="display-name"><input type="text" placeholder="Display name" data-bind="value: displayName, valueUpdate: 'keyup'"/></td>
+						<td class="full-name"><input type="text" placeholder="Full name" data-bind="value: fullName, valueUpdate: 'keyup'"/></td>
 						<td><button data-bind="click: function() { $root.keysAvailable.remove($data); }">Remove</button></td>
 					</tr>
 				</tbody>
 			</table>
+			<pre data-bind="text: ko.mapping.toJSON(keysAvailable, null, 2)"></pre>
 		</section>
 
 		<a id="fork-me-on-github" href="https://github.com/OlsonDev/TesselKey" title="Awww, yea!" target="_blank">Fork me on GitHub</a>

@@ -9,8 +9,18 @@
 		}
 	;
 
-	function init(data, parent) {
-		var self = this;
+	function createInitArgs(args, defaults) {
+		args = $.makeArray(args);
+		while (args.length < 2) args.push(null);
+		args.push(defaults);
+		return args;
+	}
+
+	function init(overrides, parent, defaults) {
+		var self = this
+			, data = _.extend({}, defaults, overrides);
+		;
+
 		_.extend(self, ko.mapping.fromJS(data, mapping));
 		self.ctor = ko.computed(function() {
 			return _.objectTypeName(self);
@@ -28,31 +38,38 @@
 	}
 
 	function Layout() {
-		var self = this;
-		init.apply(self, arguments);
-		self.numRows = ko.observable(10);
-		self.numColumns = ko.observable(10);
-		self.keys = ko.observableArray();
+		var self = this
+			, args = createInitArgs(arguments, {
+				numRows: 10
+				, numColumns: 10
+				, keys: []
+			})
+		;
+		init.apply(self, args);
 	}
 
 	function LayoutKey() {
-		var self = this;
-		init.apply(self, arguments);
-		self.row = ko.observable(0);
-		self.column = ko.observable(0);
+		var self = this
+			, args = createInitArgs(arguments, { row: 0, column: 0 });
+		init.apply(self, args);
 	}
 
 	function USBKey() {
-		var self = this;
-		init.apply(self, arguments);
-		self.fullName = ko.observable('');
-		self.displayName = ko.observable('');
-		self.code = ko.observable(0);
+		var self = this
+			, args = createInitArgs(arguments, {
+				fullName: ''
+				, displayName: ''
+				, numCode: 0
+			})
+		;
+		init.apply(self, args);
 	}
 
 	function Profile() {
-		var self = this;
-		init.apply(self, arguments);
+		var self = this
+			, args = createInitArgs(arguments, {})
+		;
+		init.apply(self, args);
 	}
 
 	function ViewModel() {
@@ -61,11 +78,13 @@
 			, hash = wl.hash.replace(/^#/, '')
 			, tabMatch = hash.match(/^(?:matrix|layout|profile|keys-available)$/)
 			, tab = tabMatch ? tabMatch[0] : 'matrix'
+			, args = createInitArgs(arguments, {
+				ready: false
+				, tab: tab
+				, keysAvailable: []
+			})
 		;
-		init.apply(self, arguments);
-		self.ready = ko.observable(false);
-		self.tab = ko.observable(tab);
-		self.keysAvailable = ko.observableArray();
+		init.apply(self, args);
 		self.addKeyAvailable = function() {
 			self.keysAvailable.push(new USBKey);
 		};
