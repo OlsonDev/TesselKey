@@ -345,129 +345,129 @@
 }, {
 	"numCode": 0,
 	"displayName": "~",
-	"fullName": "~"
+	"fullName": "Tilde"
 }, {
 	"numCode": 0,
 	"displayName": "@",
-	"fullName": "@"
+	"fullName": "At Sign"
 }, {
 	"numCode": 0,
 	"displayName": "#",
-	"fullName": "#"
+	"fullName": "Pound Sign"
 }, {
 	"numCode": 0,
 	"displayName": "$",
-	"fullName": "$"
+	"fullName": "Dollar Sign"
 }, {
 	"numCode": 0,
 	"displayName": "%",
-	"fullName": "%"
+	"fullName": "Percent Sign"
 }, {
 	"numCode": 0,
 	"displayName": "^",
-	"fullName": "^"
+	"fullName": "Caret"
 }, {
 	"numCode": 0,
 	"displayName": "&",
-	"fullName": "&"
+	"fullName": "Ampersand"
 }, {
 	"numCode": 0,
 	"displayName": "*",
-	"fullName": "*"
+	"fullName": "Asterisk"
 }, {
 	"numCode": 0,
 	"displayName": "=",
-	"fullName": "="
+	"fullName": "Equal Sign"
 }, {
 	"numCode": 0,
 	"displayName": "+",
-	"fullName": "+"
+	"fullName": "Plus Sign"
 }, {
 	"numCode": 0,
 	"displayName": "-",
-	"fullName": "-"
+	"fullName": "Minus Sign"
 }, {
 	"numCode": 0,
 	"displayName": "_",
-	"fullName": "_"
+	"fullName": "Underscore"
 }, {
 	"numCode": 0,
 	"displayName": "(",
-	"fullName": "("
+	"fullName": "Left Parenthesis"
 }, {
 	"numCode": 0,
 	"displayName": ")",
-	"fullName": ")"
+	"fullName": "Right Parenthesis"
 }, {
 	"numCode": 0,
 	"displayName": "[",
-	"fullName": "["
+	"fullName": "Left Square Bracket"
 }, {
 	"numCode": 0,
 	"displayName": "]",
-	"fullName": "]"
+	"fullName": "Right Square Bracket"
 }, {
 	"numCode": 0,
 	"displayName": "{",
-	"fullName": "{"
+	"fullName": "Left Curly Brace"
 }, {
 	"numCode": 0,
 	"displayName": "}",
-	"fullName": "}"
+	"fullName": "Right Curly Brace"
 }, {
 	"numCode": 0,
 	"displayName": "<",
-	"fullName": "<"
+	"fullName": "Left Angle Bracket"
 }, {
 	"numCode": 0,
 	"displayName": ">",
-	"fullName": ">"
+	"fullName": "Right Angle Bracket"
 }, {
 	"numCode": 0,
 	"displayName": "/",
-	"fullName": "/"
+	"fullName": "Forward Slash"
 }, {
 	"numCode": 0,
 	"displayName": "\\",
-	"fullName": "\\"
+	"fullName": "Backslash"
 }, {
 	"numCode": 0,
 	"displayName": "|",
-	"fullName": "|"
+	"fullName": "Pipe"
 }, {
 	"numCode": 0,
 	"displayName": "`",
-	"fullName": "`"
+	"fullName": "Grave Accent"
 }, {
 	"numCode": 0,
 	"displayName": "'",
-	"fullName": "'"
+	"fullName": "Single Quote"
 }, {
 	"numCode": 0,
 	"displayName": "\"",
-	"fullName": "\""
+	"fullName": "Double Quote"
 }, {
 	"numCode": 0,
 	"displayName": ",",
-	"fullName": ","
+	"fullName": "Comma"
 }, {
 	"numCode": 0,
 	"displayName": ".",
-	"fullName": "."
+	"fullName": "Period"
 }, {
 	"numCode": 0,
 	"displayName": ";",
-	"fullName": ";"
+	"fullName": "Semi-Colon"
 }, {
 	"numCode": 0,
 	"displayName": ":",
-	"fullName": ":"
+	"fullName": "Colon"
 }, {
 	"numCode": 0,
 	"displayName": "?",
-	"fullName": "?"
+	"fullName": "Question Mark"
 }, {
 	"numCode": 0,
 	"displayName": "!",
-	"fullName": "!"
+	"fullName": "Exclamation Point"
 }]
