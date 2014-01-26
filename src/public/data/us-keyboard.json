@@ -1,0 +1,473 @@
+[{
+	"numCode": 0,
+	"displayName": "A",
+	"fullName": "A"
+}, {
+	"numCode": 0,
+	"displayName": "B",
+	"fullName": "B"
+}, {
+	"numCode": 0,
+	"displayName": "C",
+	"fullName": "C"
+}, {
+	"numCode": 0,
+	"displayName": "D",
+	"fullName": "D"
+}, {
+	"numCode": 0,
+	"displayName": "E",
+	"fullName": "E"
+}, {
+	"numCode": 0,
+	"displayName": "F",
+	"fullName": "F"
+}, {
+	"numCode": 0,
+	"displayName": "G",
+	"fullName": "G"
+}, {
+	"numCode": 0,
+	"displayName": "H",
+	"fullName": "H"
+}, {
+	"numCode": 0,
+	"displayName": "I",
+	"fullName": "I"
+}, {
+	"numCode": 0,
+	"displayName": "J",
+	"fullName": "J"
+}, {
+	"numCode": 0,
+	"displayName": "K",
+	"fullName": "K"
+}, {
+	"numCode": 0,
+	"displayName": "L",
+	"fullName": "L"
+}, {
+	"numCode": 0,
+	"displayName": "M",
+	"fullName": "M"
+}, {
+	"numCode": 0,
+	"displayName": "N",
+	"fullName": "N"
+}, {
+	"numCode": 0,
+	"displayName": "O",
+	"fullName": "O"
+}, {
+	"numCode": 0,
+	"displayName": "P",
+	"fullName": "P"
+}, {
+	"numCode": 0,
+	"displayName": "Q",
+	"fullName": "Q"
+}, {
+	"numCode": 0,
+	"displayName": "R",
+	"fullName": "R"
+}, {
+	"numCode": 0,
+	"displayName": "S",
+	"fullName": "S"
+}, {
+	"numCode": 0,
+	"displayName": "T",
+	"fullName": "T"
+}, {
+	"numCode": 0,
+	"displayName": "U",
+	"fullName": "U"
+}, {
+	"numCode": 0,
+	"displayName": "V",
+	"fullName": "V"
+}, {
+	"numCode": 0,
+	"displayName": "W",
+	"fullName": "W"
+}, {
+	"numCode": 0,
+	"displayName": "X",
+	"fullName": "X"
+}, {
+	"numCode": 0,
+	"displayName": "Y",
+	"fullName": "Y"
+}, {
+	"numCode": 0,
+	"displayName": "Z",
+	"fullName": "Z"
+}, {
+	"numCode": 0,
+	"displayName": "0",
+	"fullName": "0"
+}, {
+	"numCode": 0,
+	"displayName": "1",
+	"fullName": "1"
+}, {
+	"numCode": 0,
+	"displayName": "2",
+	"fullName": "2"
+}, {
+	"numCode": 0,
+	"displayName": "3",
+	"fullName": "3"
+}, {
+	"numCode": 0,
+	"displayName": "4",
+	"fullName": "4"
+}, {
+	"numCode": 0,
+	"displayName": "5",
+	"fullName": "5"
+}, {
+	"numCode": 0,
+	"displayName": "6",
+	"fullName": "6"
+}, {
+	"numCode": 0,
+	"displayName": "7",
+	"fullName": "7"
+}, {
+	"numCode": 0,
+	"displayName": "8",
+	"fullName": "8"
+}, {
+	"numCode": 0,
+	"displayName": "9",
+	"fullName": "9"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 0",
+	"fullName": "Num Pad 0"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 1",
+	"fullName": "Num Pad 1"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 2",
+	"fullName": "Num Pad 2"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 3",
+	"fullName": "Num Pad 3"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 4",
+	"fullName": "Num Pad 4"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 5",
+	"fullName": "Num Pad 5"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 6",
+	"fullName": "Num Pad 6"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 7",
+	"fullName": "Num Pad 7"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 8",
+	"fullName": "Num Pad 8"
+}, {
+	"numCode": 0,
+	"displayName": "Num Pad 9",
+	"fullName": "Num Pad 9"
+}, {
+	"numCode": 0,
+	"displayName": "Left Shift",
+	"fullName": "Left Shift"
+}, {
+	"numCode": 0,
+	"displayName": "Left Control",
+	"fullName": "Left Control"
+}, {
+	"numCode": 0,
+	"displayName": "Left Alt",
+	"fullName": "Left Alt"
+}, {
+	"numCode": 0,
+	"displayName": "Left Meta",
+	"fullName": "Left Meta"
+}, {
+	"numCode": 0,
+	"displayName": "Right Shift",
+	"fullName": "Right Shift"
+}, {
+	"numCode": 0,
+	"displayName": "Right Control",
+	"fullName": "Right Control"
+}, {
+	"numCode": 0,
+	"displayName": "Right Alt",
+	"fullName": "Right Alt"
+}, {
+	"numCode": 0,
+	"displayName": "Right Meta",
+	"fullName": "Right Meta"
+}, {
+	"numCode": 0,
+	"displayName": "F1",
+	"fullName": "F1"
+}, {
+	"numCode": 0,
+	"displayName": "F2",
+	"fullName": "F2"
+}, {
+	"numCode": 0,
+	"displayName": "F3",
+	"fullName": "F3"
+}, {
+	"numCode": 0,
+	"displayName": "F4",
+	"fullName": "F4"
+}, {
+	"numCode": 0,
+	"displayName": "F5",
+	"fullName": "F5"
+}, {
+	"numCode": 0,
+	"displayName": "F6",
+	"fullName": "F6"
+}, {
+	"numCode": 0,
+	"displayName": "F7",
+	"fullName": "F7"
+}, {
+	"numCode": 0,
+	"displayName": "F8",
+	"fullName": "F8"
+}, {
+	"numCode": 0,
+	"displayName": "F9",
+	"fullName": "F9"
+}, {
+	"numCode": 0,
+	"displayName": "F10",
+	"fullName": "F10"
+}, {
+	"numCode": 0,
+	"displayName": "F11",
+	"fullName": "F11"
+}, {
+	"numCode": 0,
+	"displayName": "F12",
+	"fullName": "F12"
+}, {
+	"numCode": 0,
+	"displayName": "Enter",
+	"fullName": "Enter"
+}, {
+	"numCode": 0,
+	"displayName": "Space",
+	"fullName": "Space"
+}, {
+	"numCode": 0,
+	"displayName": "Backspace",
+	"fullName": "Backspace"
+}, {
+	"numCode": 0,
+	"displayName": "Delete",
+	"fullName": "Delete"
+}, {
+	"numCode": 0,
+	"displayName": "Tab",
+	"fullName": "Tab"
+}, {
+	"numCode": 0,
+	"displayName": "Home",
+	"fullName": "Home"
+}, {
+	"numCode": 0,
+	"displayName": "End",
+	"fullName": "End"
+}, {
+	"numCode": 0,
+	"displayName": "Page Up",
+	"fullName": "Page Up"
+}, {
+	"numCode": 0,
+	"displayName": "Page Down",
+	"fullName": "Page Down"
+}, {
+	"numCode": 0,
+	"displayName": "Arrow Up",
+	"fullName": "Arrow Up"
+}, {
+	"numCode": 0,
+	"displayName": "Arrow Down",
+	"fullName": "Arrow Down"
+}, {
+	"numCode": 0,
+	"displayName": "Arrow Left",
+	"fullName": "Arrow Left"
+}, {
+	"numCode": 0,
+	"displayName": "Arrow Right",
+	"fullName": "Arrow Right"
+}, {
+	"numCode": 0,
+	"displayName": "Print Screen",
+	"fullName": "Print Screen"
+}, {
+	"numCode": 0,
+	"displayName": "Insert",
+	"fullName": "Insert"
+}, {
+	"numCode": 0,
+	"displayName": "Pause",
+	"fullName": "Pause"
+}, {
+	"numCode": 0,
+	"displayName": "Break",
+	"fullName": "Break"
+}, {
+	"numCode": 0,
+	"displayName": "Caps Lock",
+	"fullName": "Caps Lock"
+}, {
+	"numCode": 0,
+	"displayName": "Num Lock",
+	"fullName": "Num Lock"
+}, {
+	"numCode": 0,
+	"displayName": "Scroll Lock",
+	"fullName": "Scroll Lock"
+}, {
+	"numCode": 0,
+	"displayName": "~",
+	"fullName": "~"
+}, {
+	"numCode": 0,
+	"displayName": "@",
+	"fullName": "@"
+}, {
+	"numCode": 0,
+	"displayName": "#",
+	"fullName": "#"
+}, {
+	"numCode": 0,
+	"displayName": "$",
+	"fullName": "$"
+}, {
+	"numCode": 0,
+	"displayName": "%",
+	"fullName": "%"
+}, {
+	"numCode": 0,
+	"displayName": "^",
+	"fullName": "^"
+}, {
+	"numCode": 0,
+	"displayName": "&",
+	"fullName": "&"
+}, {
+	"numCode": 0,
+	"displayName": "*",
+	"fullName": "*"
+}, {
+	"numCode": 0,
+	"displayName": "=",
+	"fullName": "="
+}, {
+	"numCode": 0,
+	"displayName": "+",
+	"fullName": "+"
+}, {
+	"numCode": 0,
+	"displayName": "-",
+	"fullName": "-"
+}, {
+	"numCode": 0,
+	"displayName": "_",
+	"fullName": "_"
+}, {
+	"numCode": 0,
+	"displayName": "(",
+	"fullName": "("
+}, {
+	"numCode": 0,
+	"displayName": ")",
+	"fullName": ")"
+}, {
+	"numCode": 0,
+	"displayName": "[",
+	"fullName": "["
+}, {
+	"numCode": 0,
+	"displayName": "]",
+	"fullName": "]"
+}, {
+	"numCode": 0,
+	"displayName": "{",
+	"fullName": "{"
+}, {
+	"numCode": 0,
+	"displayName": "}",
+	"fullName": "}"
+}, {
+	"numCode": 0,
+	"displayName": "<",
+	"fullName": "<"
+}, {
+	"numCode": 0,
+	"displayName": ">",
+	"fullName": ">"
+}, {
+	"numCode": 0,
+	"displayName": "/",
+	"fullName": "/"
+}, {
+	"numCode": 0,
+	"displayName": "\\",
+	"fullName": "\\"
+}, {
+	"numCode": 0,
+	"displayName": "|",
+	"fullName": "|"
+}, {
+	"numCode": 0,
+	"displayName": "`",
+	"fullName": "`"
+}, {
+	"numCode": 0,
+	"displayName": "'",
+	"fullName": "'"
+}, {
+	"numCode": 0,
+	"displayName": "\"",
+	"fullName": "\""
+}, {
+	"numCode": 0,
+	"displayName": ",",
+	"fullName": ","
+}, {
+	"numCode": 0,
+	"displayName": ".",
+	"fullName": "."
+}, {
+	"numCode": 0,
+	"displayName": ";",
+	"fullName": ";"
+}, {
+	"numCode": 0,
+	"displayName": ":",
+	"fullName": ":"
+}, {
+	"numCode": 0,
+	"displayName": "?",
+	"fullName": "?"
+}, {
+	"numCode": 0,
+	"displayName": "!",
+	"fullName": "!"
+}]
