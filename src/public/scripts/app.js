@@ -88,6 +88,14 @@
 		self.addKeyAvailable = function() {
 			self.keysAvailable.push(new USBKey);
 		};
+		self.loadKeysAvailable = function() {
+
+		};
+		self.saveKeysAvailable = function() {
+			var filename = $.trim(prompt('Filename?', 'keys-available.json'));
+			if (!filename) return;
+			tk.download(filename, ko.mapping.toJSON(self.keysAvailable));
+		};
 		if (hash && !tabMatch) wl.hash = '';
 	}
 

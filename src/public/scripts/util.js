@@ -62,3 +62,16 @@
 		return ko.toJSON.apply(ko, args);
 	};
 }());
+(function() {
+	'use strict';
+	window.tk = window.tk || {};
+	tk.download = function(filename, content, mimeType) {
+		mimeType = mimeType || 'application/octet-stream';
+		var a = document.createElement('a')
+			, b = new Blob([content], { type: mimeType || 'application/octet-stream' })
+		;
+		a.href = URL.createObjectURL(b);
+		a.download = filename;
+		a.click();
+	};
+}());

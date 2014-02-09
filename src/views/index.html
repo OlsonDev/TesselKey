@@ -34,7 +34,9 @@
 
 		<section id="keys-available" data-bind="visible: tab() === 'keys-available'">
 			<button data-bind="click: addKeyAvailable">Add key</button>
-			<table>
+			<button data-bind="click: loadKeysAvailable">Load JSON</button>
+			<button data-bind="click: saveKeysAvailable, visible: keysAvailable().length">Save JSON</button>
+			<table id="keys-available-table">
 				<thead>
 					<tr>
 						<th class="code">Code</th>
@@ -52,7 +54,8 @@
 					</tr>
 				</tbody>
 			</table>
-			<textarea class="json" readonly="readonly" data-bind="value: ko.mapping.toJSON(keysAvailable, null, 2)"></textarea>
+			<p data-bind="visible: !keysAvailable().length">There are no keys available; click &ldquo;Add key&rdquo; or &ldquo;Load JSON.&rdquo;</p>
+			<textarea class="json" readonly="readonly" data-bind="visible: keysAvailable().length, value: ko.mapping.toJSON(keysAvailable, null, 2)"></textarea>
 		</section>
 
 		<a id="fork-me-on-github" href="https://github.com/OlsonDev/TesselKey" title="Awww, yea!" target="_blank">Fork me on GitHub</a>
